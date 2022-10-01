@@ -1,0 +1,174 @@
+<section class="hero">
+  <div class="hero__text">
+    <h3 class="hero__text__title">Dennis Holmström</h3>
+    <h5 class="hero__text__subtitle">Fotograf | Programerare | Entreprenör</h5>
+  </div>
+
+  <div class="hero__info">
+    <a class="hero__info__links" href="#om">
+      <h6 class="hero__info__links__title">Om mig</h6>
+      <p class="hero__info__links__info">
+        Lär dig mer om mig och vad jag finner intresse i
+      </p>
+    </a>
+    <a class="hero__info__links" href="#">
+      <h6 class="hero__info__links__title">Fotografering</h6>
+      <p class="hero__info__links__info">Titta på mina senaste bilder</p>
+    </a>
+    <a class="hero__info__links" href="#kontakt">
+      <h6 class="hero__info__links__title">Kontakt</h6>
+      <p class="hero__info__links__info">
+        Här kan du kontakta mig om du har frågor eller är intresserad av att
+        jobba med mig
+      </p>
+    </a>
+  </div>
+</section>
+<section class="about" id="om">
+  <h3 class="about__title section__title">Om mig</h3>
+  <p class="about__info">
+    Jag heter Dennis Holmström, är en 18 år och bor i Göteborg.
+    <br />
+    <br />
+    Under de senaste åren har jag fotograferat från och till beroende på säsong.
+    På vinterhalvåret fotograferar jag mycket hockey eftersom detta är något som
+    jag har växt upp med. På sommaren blir det istället mycket fordon och
+    landskap.
+    <br />
+    <br />
+    För tillfället studerar jag Teknik med inriktningen automation på
+    Göteborgsregionens Tekniska Gymnasium (GTG) vilket gör att jag har en ökad
+    förståelse för hur teknik fungerar och används av dig.
+  </p>
+  <img
+    src="img/kameraporträtt.jpg"
+    alt="En portätt bild på mig [Dennis Holmström]"
+    class="about__img"
+  />
+</section>
+<section class="about__page">
+  <h3 class="about__page__title section__title">Om hemsidan</h3>
+  <p class="about__page__info">
+    Denna hemsidan är byggd både för att visa min kunskap inom programmering av
+    hemsidor och för att ha en samlingsplats för de bilder jag tagit.
+    <br />
+    <br />
+    På hemsidan finner du exempelvis några av mina favoritbilder, samlingar av
+    bilder från speciella evenemang.
+    <br />
+    <br />
+    Här kan du se hur jag använder mig av olika programspråk för att göra det
+    till en så smidig hemsida som möjligt.
+  </p>
+  <div class="about__page__grid">
+    <h4 class="about__page__grid__title">Använda programspråk</h4>
+    <article class="about__page__griditem">
+      <h6 class="about__page__griditem__title">HTML</h6>
+      <p class="about__page__griditem__info">
+        Används för att bestämma innehållet på hemsidan
+      </p>
+    </article>
+    <article class="about__page__griditem">
+      <h6 class="about__page__griditem__title">JavaScript</h6>
+      <p class="about__page__griditem__info">
+        Styr vad som händer när du interagerar med hemsidan.
+      </p>
+    </article>
+    <article class="about__page__griditem">
+      <h6 class="about__page__griditem__title">SCSS</h6>
+      <p class="about__page__griditem__info">
+        Används för att styra utseendet på hemsidan.
+      </p>
+    </article>
+  </div>
+</section>
+<section class="kontakt" id="kontakt">
+  <form action="" class="kontakt__form" autocomplete="off">
+    <h3 class="section__title">Kontakt</h3>
+    <div class="kontakt__form__group form__group">
+      <input
+        class="kontakt__form__input form__input"
+        type="text"
+        name="namn"
+        placeholder=""
+        required="True"
+      />
+      <label class="form__label" for="namn">Namn</label>
+    </div>
+    <div class="kontakt__form__group form__group">
+      <input
+        class="kontakt__form__input form__input"
+        type="text"
+        name="email"
+        placeholder=""
+        required="True"
+      />
+      <label class="form__label" for="email">Email</label>
+    </div>
+    <div class="kontakt__form__group form__group">
+      <input
+        class="kontakt__form__input form__input"
+        type="text"
+        name="amne"
+        placeholder=""
+        required="True"
+      />
+      <label class="form__label" for="amne">Ämne</label>
+    </div>
+    <div class="kontakt__form__group form__group">
+      <textarea
+        class="kontakt__form__input form__input no__resize"
+        name="meddelande"
+        cols="30"
+        rows="10"
+        placeholder=""
+        required="True"
+      ></textarea>
+      <label class="form__label" for="meddelande">Meddelande</label>
+    </div>
+    <div class="kontakt__form__group form__group">
+      <input
+        onclick="SendEmail()"
+        class="form__input"
+        type="button"
+        value="Skicka"
+      />
+    </div>
+  </form>
+</section>
+
+<script>
+  function SendEmail() {
+    var namn = document.getElementsByName('namn')[0].value;
+    var email = document.getElementsByName('email')[0].value;
+    var ämne = document.getElementsByName('amne')[0].value;
+    var meddelande = document.getElementsByName('meddelande')[0].value;
+    meddelande = meddelande.replace(/\r\n|\r|\n/g, '%0D%0A');
+
+    if (namn == '') {
+      alert('Fyll i ditt namn');
+      return;
+    }
+    if (email == '') {
+      alert('Fyll i din email');
+      return;
+    }
+    if (ämne == '') {
+      alert('Fyll i ett ämne');
+      return;
+    }
+    if (meddelande == '') {
+      alert('Skriv ett meddelande');
+      return;
+    }
+
+    window.open(
+      'mailto:dennis@holmstrom.nu?cc=' +
+        email +
+        '&subject=' +
+        ämne +
+        '&body=' +
+        meddelande
+    );
+  }
+</script>
