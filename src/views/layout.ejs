@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <% if (typeof title == 'string' && title){ %><%= title %> |<% } %> Dennis
+      Holmström
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/output.css" />
+    <script defer src="/js/main.js"></script>
+  </head>
+  <body class="flex flex-col justify-between min-h-scree bg-[#dcdcdc]">
+    <% if (typeof noHeader == 'boolean' && noHeader) { %>
+    <div></div>
+    <% } else { %>
+    <div><%- include('./components/header/header') %></div>
+    <% } %>
+    <main><%- body %></main>
+    <div><%- include('./components/footer/footer') %></div>
+  </body>
+</html>
