@@ -1,0 +1,31 @@
+<section class="albums">
+  <h3 class="section__title">Alla album</h3>
+  <div class="albums__grid"></div>
+</section>
+
+<script>
+  const albumsGrid = document.querySelector('.albums__grid');
+
+  fetch('/api/albums')
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+      res.forEach((album) => {
+        const { _id, title = '', subTitle = '' } = album;
+        var albumCoverImg = document.createElement('img');
+        albumCoverImg.src = album.Image;
+        var albumCoverTitle = document.createElement('h6');
+        albumCoverTitle.classList.add('album__title');
+        albumCoverTitle.appendChild(document.createTextNode(title));
+        var albumCoverInfo = document.createElement('p');
+        albumCoverInfo.appendChild(document.createTextNode(subTitle));
+        var albumCoverA = document.createElement('a');
+        albumCoverA.href = `/albums/${_id}`;
+        albumCoverA.classList.add('album');
+        albumCoverA.appendChild(albumCoverImg);
+        albumCoverA.appendChild(albumCoverTitle);
+        albumCoverA.appendChild(albumCoverInfo);
+        albumsGrid.appendChild(albumCoverA);
+      });
+    });
+</script>

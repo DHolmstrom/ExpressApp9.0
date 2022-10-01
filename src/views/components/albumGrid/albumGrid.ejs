@@ -1,0 +1,7 @@
+<section class="albums">
+  <h3 class="section__title">Alla album</h3>
+  <div class="albums__grid">
+    <% albums.forEach(album => { %> <%- include('./albumGridItem', {album:
+    album}) %> <% }) %>
+  </div>
+</section>
