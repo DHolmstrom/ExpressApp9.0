@@ -3,9 +3,8 @@ import {
   createNewUser,
   getAllUsers,
   getUserById,
-  getUserByIdWithPassword,
+  getUserByEmailWithPassword,
 } from '../service/user.service';
-
 import logger from '../utils/logger';
 
 export const createUserHandler = async (req: Request, res: Response) => {
@@ -36,5 +35,21 @@ export const getUserByIdHandler = async (req: Request, res: Response) => {
   } catch (error: any) {
     logger.error(error);
     res.status(400).send(error.message);
+  }
+};
+
+export const signinUserHandler = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const user = await getUserByEmailWithPassword(email);
+
+    if (!(user && (await user.comparePassword(password)))) {
+      return res.status(401).send('Invalid email or password');
+    }
+
+    return res.status(202).send({ name: user.name, email: user.email });
+  } catch (error: any) {
+    logger.error(error);
+    return res.status(500).send(error.message);
   }
 };

@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import config from 'config';
 
+import logger from '../utils/logger';
+
 export interface UserDocument extends mongoose.Document {
   name: string;
   email: string;
@@ -49,12 +51,14 @@ userSchema.pre('save', async function (next) {
   return next();
 });
 
-userSchema.methods.comparePassword = async (inputPassword: string) => {
-  let user = this as unknown as UserDocument;
+userSchema.method(
+  'comparePassword',
+  async function comparePassword(inputPassword: string): Promise<boolean> {
+    logger.info(this._doc);
+    return await bcrypt.compare(inputPassword, this._doc.password);
+  }
+);
 
-  return bcrypt.compareSync(inputPassword, user.password);
-};
-
-const UserModel = mongoose.model('User', userSchema);
+const UserModel = mongoose.model<UserDocument>('User', userSchema);
 
 export default UserModel;

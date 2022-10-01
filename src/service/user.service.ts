@@ -27,9 +27,9 @@ export const getUserById = async (id: string | ObjectId) => {
   }
 };
 
-export const getUserByIdWithPassword = async (id: string | ObjectId) => {
+export const getUserByEmailWithPassword = async (email: string) => {
   try {
-    return await UserModel.findById(id).select('+password');
+    return await UserModel.findOne({ email: email }).select('+password');
   } catch (error: any) {
     throw new Error(error);
   }
