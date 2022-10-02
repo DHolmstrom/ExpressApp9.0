@@ -1,3 +1,12 @@
+<div
+  id="popup-container"
+  class="max-w-screen max-h-screen z-50 fixed inset-0 bg-white/50 hidden justify-center items-center"
+>
+  <div class="w-3/4 h-3/4 flex flex-col justify-center items-center">
+    <img id="popup-image" class="max-h-full max-w-full mx-auto" src="" alt="" />
+  </div>
+</div>
+
 <section class="albums">
   <h3 class="section__title">Alla album</h3>
   <div class="albums__grid"></div>
@@ -5,24 +14,86 @@
 
 <script>
   const albumsGrid = document.querySelector('.albums__grid');
+  const popupImage = document.getElementById('popup-image');
+  const popupContainer = document.getElementById('popup-container');
+  const htmlBody = document.querySelector('body');
+
+  popupContainer.addEventListener('click', function (e) {
+    if (e.target.id !== 'popup-container') {
+      return;
+    }
+    setPopupview(false);
+  });
+
+  albumInfo = {};
+  activeImageIndex = 0;
 
   albumId = window.location.pathname.split('/').pop();
   fetch(`/api/albums/${albumId}`)
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
+      albumInfo = res;
       res?.images?.forEach((album) => {
         const { _id, tags = [], filename } = album;
         var albumCoverImg = document.createElement('img');
         albumCoverImg.src = `/images/lowres/${filename}`;
         albumCoverImg.alt = `${tags.join(', ')}`;
 
-        var albumCoverA = document.createElement('a');
-        albumCoverA.href = `/images/${_id}`;
+        var albumCoverA = document.createElement('div');
+        albumCoverA.onclick = updatePopupImage(_id);
         albumCoverA.classList.add('album');
+
+        albumCoverA.addEventListener('click', function () {
+          updatePopupImage(_id);
+          setPopupview(true);
+        });
 
         albumCoverA.appendChild(albumCoverImg);
         albumsGrid.appendChild(albumCoverA);
       });
     });
+
+  function updatePopupImage(imageId) {
+    const activeImage = albumInfo.images.filter((image, index) => {
+      if (image._id === imageId) {
+        activeImageIndex = index;
+        return true;
+      }
+    })[0];
+    const { _id, tags = [], filename } = activeImage;
+    popupImage.src = `/images/lowres/${filename}`;
+    popupImage.alt = tags.join(', ');
+  }
+
+  function setPopupview(status) {
+    if (status) {
+      popupContainer.classList.remove('hidden');
+      popupContainer.classList.add('flex');
+      htmlBody.classList.add('overflow-y-hidden');
+      htmlBody.classList.add('h-screen');
+
+      document.addEventListener('keydown', popupEventListener);
+      return;
+    }
+    popupContainer.classList.add('hidden');
+    popupContainer.classList.remove('flex');
+    htmlBody.classList.remove('overflow-y-hidden');
+    htmlBody.classList.remove('h-screen');
+
+    document.removeEventListener('keydown', popupEventListener);
+  }
+
+  function popupEventListener(event) {
+    if (event.code === 'Escape') {
+      setPopupview(false);
+    } else if (event.code === 'ArrowRight') {
+      updatePopupImage(
+        albumInfo.images[
+          Math.min(activeImageIndex + 1, albumInfo.images.length - 1)
+        ]._id
+      );
+    } else if (event.code === 'ArrowLeft') {
+      updatePopupImage(albumInfo.images[Math.max(activeImageIndex - 1, 0)]._id);
+    }
+  }
 </script>
