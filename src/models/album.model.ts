@@ -7,6 +7,7 @@ export interface AlbumDocument extends mongoose.Document {
   images: AlbumImage[];
   photographer: mongoose.Schema.Types.ObjectId;
   albumType: string;
+  date: Date;
   createdAt: Date;
   updatedAt: Date;
   _doc?: any;
@@ -32,12 +33,13 @@ const albumSchema = new mongoose.Schema<AlbumDocument>(
     ],
     photographer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     albumType: { type: String, required: true, default: 'hidden' },
+    date: { type: Date, required: true, default: Date.now() },
   },
   {
     timestamps: true,
   }
 );
 
-const AlbumModel = mongoose.model('Album', albumSchema);
+const AlbumModel = mongoose.model<AlbumDocument>('Album', albumSchema);
 
 export default AlbumModel;
