@@ -1,28 +1,51 @@
 <header class="header">
   <h1 class="header__brand">
-    <a class="header__brand__link" href="index.html"> Dennis Holmström </a>
+    <a class="header__brand__link" href="/"> Dennis Holmström </a>
   </h1>
   <nav class="main__nav">
-    <ul class="main__nav__list">
-      <li class="main__nav__list__item active">
-        <a href="home.html"> Hem </a>
-      </li>
-      <li class="main__nav__list__item">
-        <a href="album.html"> Album </a>
-      </li>
-      <li class="main__nav__list__item">
-        <a href="home.html#om"> Om </a>
-      </li>
-      <li class="main__nav__list__item">
-        <a href="home.html#kontakt"> Kontakt </a>
-      </li>
-      <li class="main__nav__list__item">
-        <a href="Album/Sammanstallning.html"> Sammanställning </a>
-      </li>
-    </ul>
+    <ul id="main-nav" class="main__nav__list"></ul>
   </nav>
   <button class="toggle__main__nav">
     <i class="fas fa-bars"></i>
     <i class="fas fa-times"></i>
   </button>
 </header>
+
+<script>
+  const mainNav = document.getElementById('main-nav');
+  const pathNames = window.location.pathname.split('/');
+  const links = [
+    {
+      text: 'Hem',
+      link: '',
+    },
+    {
+      text: 'Album',
+      link: 'albums',
+    },
+    {
+      text: 'Om',
+      link: '#om',
+    },
+    {
+      text: 'Kontakt',
+      link: '#kontakt',
+    },
+  ];
+
+  links.forEach((linkObj) => {
+    const { text, link } = linkObj;
+    const linkLi = document.createElement('li');
+    const linkA = document.createElement('a');
+    linkA.classList.add('main__nav__list__item');
+
+    if (pathNames.slice(1).includes(link)) {
+      linkA.classList.add('active');
+    }
+
+    linkA.href = `/${link}`;
+    linkA.appendChild(document.createTextNode(text));
+    linkLi.appendChild(linkA);
+    mainNav.appendChild(linkLi);
+  });
+</script>
