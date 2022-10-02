@@ -1,3 +1,8 @@
+#Album images
+/public/images/lowres
+
+#Ignore python files
+*.py
 #Logs
 logs
 *.log
