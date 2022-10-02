@@ -15,7 +15,7 @@ const routes = (app: Express) => {
     res.render('pages/albums');
   });
 
-  app.get('/albums', (req: Request, res: Response) => {
+  app.get('/albums/:id', (req: Request, res: Response) => {
     res.render('pages/images');
   });
 
