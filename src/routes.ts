@@ -19,6 +19,10 @@ const routes = (app: Express) => {
     res.render('pages/images');
   });
 
+  app.get('/links', (req: Request, res: Response) => {
+    res.render('pages/links', { noHeader: true });
+  });
+
   app.use('/api/albums', albumAPIRouter);
 
   app.use('/api/users', userAPIRouter);

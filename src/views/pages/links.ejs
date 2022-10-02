@@ -1,0 +1,38 @@
+<section class="links__section">
+  <h3 class="links__section__title section__title">Länkar</h3>
+  <ul class="links__ul"></ul>
+</section>
+
+<script>
+  const links__ul = document.querySelector('.links__ul');
+  const links = [
+    {
+      Namn: 'Hem',
+      Länk: '/',
+    },
+    {
+      Namn: 'Alla album',
+      Länk: '/albums',
+    },
+    /*{
+      Namn: 'Senaste album',
+      Länk: albums[0].Länk,
+    },*/
+    {
+      Namn: 'Instagram',
+      Länk: 'https://www.instagram.com/dennisholmstromfoto/',
+    },
+    {
+      Namn: 'Kontakt',
+      Länk: '/#kontakt',
+    },
+  ];
+  links.forEach((link) => {
+    const { Namn, Länk } = link;
+    var aText = document.createTextNode(Namn);
+    var a = document.createElement('a');
+    a.appendChild(aText);
+    a.href = Länk;
+    links__ul.appendChild(a);
+  });
+</script>
