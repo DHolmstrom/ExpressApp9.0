@@ -1,9 +1,36 @@
+<script src="/js/images.js" defer></script>
+
 <div
   id="popup-container"
   class="max-w-screen max-h-screen z-50 fixed inset-0 bg-white/50 hidden justify-center items-center"
 >
-  <div class="w-3/4 h-3/4 flex flex-col justify-center items-center">
-    <img id="popup-image" class="max-h-full max-w-full mx-auto" src="" alt="" />
+  <div class="w-3/4 h-3/4 gap-2 grid grid-cols-2 bg-[#dcdcdc] py-4">
+    <div class="w-3/4 h-full flex justify-center items-center">
+      <img
+        id="popup-image"
+        class="max-w-full max-h-full mx-auto"
+        src=""
+        alt=""
+      />
+    </div>
+    <div class="flex flex-col gap-4">
+      <a
+        class="text-xl font-semibold"
+        id="popup-image-download"
+        download
+        href=""
+        >Ladda ner bilden</a
+      >
+      <a class="text-xl font-semibold" id="popup-album-link" href=""
+        >Visa alla bilder i albummet</a
+      >
+      <p class="opacity-100 font-semibold">
+        Taggar: <span id="popup-tags"></span>
+      </p>
+      <p class="opacity-100 font-semibold">
+        Filename: <span id="popup-filename"></span>
+      </p>
+    </div>
   </div>
 </div>
 
@@ -11,89 +38,3 @@
   <h3 class="section__title">Alla album</h3>
   <div class="albums__grid"></div>
 </section>
-
-<script>
-  const albumsGrid = document.querySelector('.albums__grid');
-  const popupImage = document.getElementById('popup-image');
-  const popupContainer = document.getElementById('popup-container');
-  const htmlBody = document.querySelector('body');
-
-  popupContainer.addEventListener('click', function (e) {
-    if (e.target.id !== 'popup-container') {
-      return;
-    }
-    setPopupview(false);
-  });
-
-  albumInfo = {};
-  activeImageIndex = 0;
-
-  albumId = window.location.pathname.split('/').pop();
-  fetch(`/api/albums/${albumId}`)
-    .then((res) => res.json())
-    .then((res) => {
-      albumInfo = res;
-      res?.images?.forEach((album) => {
-        const { _id, tags = [], filename } = album;
-        var albumCoverImg = document.createElement('img');
-        albumCoverImg.src = `/images/lowres/${filename}`;
-        albumCoverImg.alt = `${tags.join(', ')}`;
-
-        var albumCoverA = document.createElement('div');
-        albumCoverA.onclick = updatePopupImage(_id);
-        albumCoverA.classList.add('album');
-
-        albumCoverA.addEventListener('click', function () {
-          updatePopupImage(_id);
-          setPopupview(true);
-        });
-
-        albumCoverA.appendChild(albumCoverImg);
-        albumsGrid.appendChild(albumCoverA);
-      });
-    });
-
-  function updatePopupImage(imageId) {
-    const activeImage = albumInfo.images.filter((image, index) => {
-      if (image._id === imageId) {
-        activeImageIndex = index;
-        return true;
-      }
-    })[0];
-    const { _id, tags = [], filename } = activeImage;
-    popupImage.src = `/images/lowres/${filename}`;
-    popupImage.alt = tags.join(', ');
-  }
-
-  function setPopupview(status) {
-    if (status) {
-      popupContainer.classList.remove('hidden');
-      popupContainer.classList.add('flex');
-      htmlBody.classList.add('overflow-y-hidden');
-      htmlBody.classList.add('h-screen');
-
-      document.addEventListener('keydown', popupEventListener);
-      return;
-    }
-    popupContainer.classList.add('hidden');
-    popupContainer.classList.remove('flex');
-    htmlBody.classList.remove('overflow-y-hidden');
-    htmlBody.classList.remove('h-screen');
-
-    document.removeEventListener('keydown', popupEventListener);
-  }
-
-  function popupEventListener(event) {
-    if (event.code === 'Escape') {
-      setPopupview(false);
-    } else if (event.code === 'ArrowRight') {
-      updatePopupImage(
-        albumInfo.images[
-          Math.min(activeImageIndex + 1, albumInfo.images.length - 1)
-        ]._id
-      );
-    } else if (event.code === 'ArrowLeft') {
-      updatePopupImage(albumInfo.images[Math.max(activeImageIndex - 1, 0)]._id);
-    }
-  }
-</script>
