@@ -4,11 +4,11 @@
   id="popup-container"
   class="max-w-screen max-h-screen z-50 fixed inset-0 bg-white/50 hidden justify-between items-center"
 >
-  <button class="text-7xl px-12" onclick="prevPopupImage()"><</button>
+  <button class="text-7xl pl-4 md:px-12" onclick="prevPopupImage()"><</button>
   <div
-    class="w-3/4 h-3/4 gap-2 flex justify-center align-center bg-[#dcdcdc] py-4"
+    class="w-3/4 h-3/4 gap-2 flex flex-col md:flex-row justify-center align-center bg-[#dcdcdc] py-4"
   >
-    <div class="h-full flex justify-center items-center flex-grow">
+    <div class="h-2/3 md:h-full flex justify-center items-center flex-grow">
       <img
         id="popup-image"
         class="max-w-full max-h-full mx-auto"
@@ -16,26 +16,24 @@
         alt=""
       />
     </div>
-    <div class="w-1/3 flex flex-col justify-center gap-4">
-      <a
-        class="text-xl font-semibold"
-        id="popup-image-download"
-        download
-        href=""
-        >Ladda ner bilden</a
-      >
-      <a class="text-xl font-semibold" id="popup-album-link" href=""
-        >Visa alla bilder i albummet</a
-      >
-      <p class="opacity-100 font-semibold">
-        Filename: <span id="popup-filename"></span>
+    <div
+      class="md:w-1/3 h-1/4 md:h-full flex flex-row md:flex-col md:items-start items-end justify-center gap-y-1 gap-x-2 md:gap-4 flex-wrap"
+    >
+      <p class="text-xl opacity-100 font-semibold">
+        <a id="popup-image-download" download href="">Ladda ner bilden</a>
       </p>
-      <p class="opacity-100 font-semibold">
+      <p class="text-xl opacity-100 font-semibold">
+        <a id="popup-album-link" href="">Visa alla bilder i albummet</a>
+      </p>
+      <p class="opacity-100 font-semibold h-fit">
+        Filename: <span class="md:block" id="popup-filename"></span>
+      </p>
+      <p class="opacity-100 font-semibold truncate max-w-full">
         Taggar: <span id="popup-tags"></span>
       </p>
     </div>
   </div>
-  <button class="text-7xl px-12" onclick="nextPopupImage()">></button>
+  <button class="text-7xl pr-4 md:px-12" onclick="nextPopupImage()">></button>
 </div>
 
 <section class="albums">
