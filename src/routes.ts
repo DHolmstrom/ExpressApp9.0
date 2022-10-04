@@ -23,6 +23,10 @@ const routes = (app: Express) => {
     res.render('pages/links', { noHeader: true });
   });
 
+  app.get('/terms', (req: Request, res: Response) => {
+    res.render('pages/terms');
+  });
+
   app.use('/api/albums', albumAPIRouter);
 
   app.use('/api/users', userAPIRouter);
