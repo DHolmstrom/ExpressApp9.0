@@ -1,4 +1,6 @@
 const albumsGrid = document.querySelector('.albums__grid');
+const albumTitle = document.getElementById('album-title');
+const albumSubTitle = document.getElementById('album-sub-title');
 const popupImage = document.getElementById('popup-image');
 const popupContainer = document.getElementById('popup-container');
 const popupimageDownload = document.getElementById('popup-image-download');
@@ -15,9 +17,10 @@ fetch(`/api/albums/${albumId}`)
   .then((res) => res.json())
   .then((res) => {
     albumInfo = res;
-    res?.images?.forEach(createImageItem);
-    updatePopupImage(albumInfo.images[0]._id);
-    setPopupview(true);
+    const { title, subTitle, images } = res;
+    albumTitle.innerText = title;
+    albumSubTitle.innerText = subTitle;
+    images?.forEach(createImageItem);
   });
 
 popupContainer.addEventListener('click', function (e) {
@@ -84,12 +87,20 @@ function popupEventListener(event) {
   if (event.code === 'Escape') {
     setPopupview(false);
   } else if (event.code === 'ArrowRight') {
-    updatePopupImage(
-      albumInfo.images[
-        Math.min(activeImageIndex + 1, albumInfo.images.length - 1)
-      ]._id
-    );
+    nextPopupImage();
   } else if (event.code === 'ArrowLeft') {
-    updatePopupImage(albumInfo.images[Math.max(activeImageIndex - 1, 0)]._id);
+    prevPopupImage();
   }
+}
+
+function nextPopupImage() {
+  updatePopupImage(
+    albumInfo.images[
+      Math.min(activeImageIndex + 1, albumInfo.images.length - 1)
+    ]._id
+  );
+}
+
+function prevPopupImage() {
+  updatePopupImage(albumInfo.images[Math.max(activeImageIndex - 1, 0)]._id);
 }
