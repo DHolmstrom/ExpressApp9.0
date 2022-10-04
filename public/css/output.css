@@ -978,6 +978,14 @@ select {
     gap: 1rem;
   }
 
+  .md\:overflow-visible {
+    overflow: visible;
+  }
+
+  .md\:whitespace-normal {
+    white-space: normal;
+  }
+
   .md\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;
