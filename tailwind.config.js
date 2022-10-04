@@ -9,5 +9,10 @@ module.exports = {
       },
     },
   },
+  variants: {
+    extend: {
+      backgroundColor: ['even', 'odd'],
+    },
+  },
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };
