@@ -1,6 +1,15 @@
 {
   "version": 2,
-  "name": "Dennis Holmström",
-  "builds": [{ "src": "app.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/app.js" }]
+  "builds": [
+    {
+      "src": "build/src/app.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "build/src/app.js"
+    }
+  ]
 }
