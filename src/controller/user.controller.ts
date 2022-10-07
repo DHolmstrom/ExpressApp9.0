@@ -4,6 +4,7 @@ import {
   getAllUsers,
   getUserById,
   getUserByEmailWithPassword,
+  deleteUserByIdHandler,
 } from '../service/user.service';
 import logger from '../utils/logger';
 
@@ -51,5 +52,15 @@ export const signinUserHandler = async (req: Request, res: Response) => {
   } catch (error: any) {
     logger.error(error);
     return res.status(500).send(error.message);
+  }
+};
+
+export const deleteUserById = async (req: Request, res: Response) => {
+  try {
+    const user = await deleteUserByIdHandler(req.body);
+    return res.status(200).send(user);
+  } catch (error: any) {
+    logger.error(error);
+    return res.status(400);
   }
 };

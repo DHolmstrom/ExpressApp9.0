@@ -34,3 +34,11 @@ export const getUserByEmailWithPassword = async (email: string) => {
     throw new Error(error);
   }
 };
+
+export const deleteUserByIdHandler = async (id: string | ObjectId) => {
+  try {
+    return await UserModel.deleteOne({ _id: id });
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};

@@ -3,6 +3,7 @@ import {
   createAlbumHandler,
   getAllAlbumsHandler,
   getAlbumByIdHandler,
+  deleteAlbumHandler,
 } from '../controller/album.controller';
 import validate from '../middleware/validateResource';
 import { createAlbumSchema } from '../schema/album.schema';
@@ -17,6 +18,6 @@ router.get('/:id', getAlbumByIdHandler);
 
 //TODO: Update album
 
-//TODO: Remove album
+router.delete('/:id', deleteAlbumHandler);
 
 export default router;

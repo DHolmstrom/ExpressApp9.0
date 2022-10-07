@@ -4,6 +4,7 @@ import {
   getAllUsersHandler,
   getUserByIdHandler,
   signinUserHandler,
+  deleteUserById,
 } from '../controller/user.controller';
 import { createUserSchema } from '../schema/user.schema';
 import validate from '../middleware/validateResource';
@@ -18,7 +19,7 @@ router.get('/:id', getUserByIdHandler);
 
 //TODO: Update user
 
-//TODO: Delete user
+router.post('/id', deleteUserById);
 
 router.post('/signin', signinUserHandler);
 

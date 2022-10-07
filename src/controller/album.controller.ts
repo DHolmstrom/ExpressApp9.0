@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { omit } from 'lodash';
 
 import logger from '../utils/logger';
@@ -6,8 +6,8 @@ import {
   createNewAlbum,
   getAllAlbums,
   getAlbumById,
+  deleteAlbumByIdHandler,
 } from '../service/album.service';
-import { getUserById } from '../service/user.service';
 
 export const getAllAlbumsHandler = async (req: Request, res: Response) => {
   try {
@@ -47,5 +47,14 @@ export const getAlbumByIdHandler = async (req: Request, res: Response) => {
   } catch (error: any) {
     logger.error(error);
     res.status(404).send(error.message);
+  }
+};
+
+export const deleteAlbumHandler = async (req: Request, res: Response) => {
+  try {
+    const album = await deleteAlbumByIdHandler(req.params.id);
+  } catch (error: any) {
+    logger.error(error);
+    res.status(500).send(error.message);
   }
 };

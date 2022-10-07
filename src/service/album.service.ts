@@ -30,3 +30,11 @@ export const getAlbumById = async (id: string | ObjectId) => {
     throw new Error(error);
   }
 };
+
+export const deleteAlbumByIdHandler = async (id: string | ObjectId) => {
+  try {
+    return await AlbumModel.deleteOne({ _id: id });
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
