@@ -7,6 +7,9 @@ const popupimageDownload = document.getElementById('popup-image-download');
 const popupAlbumLink = document.getElementById('popup-album-link');
 const popupTags = document.getElementById('popup-tags');
 const popupFilename = document.getElementById('popup-filename');
+const popupFilenameTextArea = document.getElementById(
+  'popup-filename-text-area'
+);
 const htmlBody = document.querySelector('body');
 
 albumInfo = {};
@@ -16,6 +19,9 @@ albumId = window.location.pathname.split('/').pop();
 fetch(`/api/albums/${albumId}`)
   .then((res) => res.json())
   .then((res) => {
+    if (res === []) {
+      return noAlbumAvailable();
+    }
     albumInfo = res;
     const { title, subTitle, images } = res;
     albumTitle.innerText = title;
@@ -65,6 +71,7 @@ function updatePopupImage(imageId) {
   popupImage.alt = tagsString;
   popupTags.innerText = tagsString;
   popupFilename.innerText = filename;
+  popupFilenameTextArea.innerText = filename;
 }
 
 function setPopupview(status) {
@@ -103,4 +110,8 @@ function nextPopupImage() {
 
 function prevPopupImage() {
   updatePopupImage(albumInfo.images[Math.max(activeImageIndex - 1, 0)]._id);
+}
+
+function noAlbumAvailable() {
+  albumTitle.innerText = 'Hittade bilder';
 }

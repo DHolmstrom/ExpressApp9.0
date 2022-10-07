@@ -1,4 +1,5 @@
 <script src="/js/images.js" defer></script>
+<script src="/js/copyToClipboard.js" defer></script>
 
 <div
   id="popup-container"
@@ -6,7 +7,7 @@
 >
   <button class="text-7xl pl-4 md:px-12" onclick="prevPopupImage()"><</button>
   <div
-    class="w-3/4 h-3/4 gap-2 flex flex-col md:flex-row justify-center align-center bg-[#dcdcdc] py-4"
+    class="w-3/4 h-3/4 gap-2 flex flex-col md:flex-row justify-between align-center bg-[#dcdcdc] py-4"
   >
     <div class="h-2/3 md:h-full flex justify-center items-center flex-grow">
       <img
@@ -17,7 +18,7 @@
       />
     </div>
     <div
-      class="md:w-1/3 h-1/4 md:h-full flex flex-row md:flex-col md:items-start items-end justify-center gap-y-1 gap-x-2 md:gap-4 flex-wrap"
+      class="md:w-1/4 h-1/4 md:h-full flex flex-row md:flex-col md:items-start items-end justify-center gap-y-1 gap-x-2 md:gap-4 flex-wrap"
     >
       <p class="text-xl opacity-100 font-semibold">
         <a id="popup-image-download" download href="">Ladda ner bilden</a>
@@ -25,11 +26,16 @@
       <p class="text-xl opacity-100 font-semibold">
         <a id="popup-album-link" href="">Visa alla bilder i albummet</a>
       </p>
-      <p class="opacity-100 font-semibold h-fit">
-        Filename: <span class="md:block" id="popup-filename"></span>
-      </p>
       <p
-        class="opacity-100 font-semibold truncate md:overflow-visible md:whitespace-normal max-w-full"
+        class="opacity-100 font-semibold h-fit cursor-copy"
+        onclick="copyToClipboard('popup-filename-text-area')"
+      >
+        Filnamn: <span>(klicka för att kopiera)</span>
+        <span class="md:block" id="popup-filename"></span>
+      </p>
+      <textarea class="hidden" id="popup-filename-text-area"></textarea>
+      <p
+        class="opacity-100 font-semibold truncate md:overflow-visible md:whitespace-normal md:h-[20vh] max-w-full"
       >
         Taggar: <span id="popup-tags"></span>
       </p>
@@ -40,7 +46,7 @@
 
 <section class="albums">
   <h3 id="album-title" class="text-center text-5xl py-8 font-bold">
-    Album not found
+    Hämtar albummet
   </h3>
   <h4 id="album-sub-title" class="text-center text-3xl pb-8 font-semibold"></h4>
   <div class="albums__grid"></div>
