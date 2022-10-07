@@ -503,11 +503,6 @@
   }
 }
 
-html {
-  font-size: 10px;
-  font-family: 'Montserrat', sans-serif;
-}
-
 body {
   min-height: 100vh;
   min-width: 300px;

@@ -1,51 +1,34 @@
-<header class="header">
-  <h1 class="header__brand">
-    <a class="header__brand__link" href="/"> Dennis Holmström </a>
-  </h1>
-  <nav class="main__nav">
-    <ul id="main-nav" class="main__nav__list"></ul>
+<script src="/js/header.js" defer></script>
+
+<header
+  class="h-16 px-4 md:px-14 py-3 bg-[#999999] flex justify-between items-center"
+>
+  <div class="flex">
+    <div>
+      <!--TODO: Add logo-->
+    </div>
+    <h1 class="text-2xl font-bold pl-3 pr-6">
+      <a href="/"> Dennis Holmström </a>
+    </h1>
+    <div><!--TODO: Serch field?--></div>
+  </div>
+
+  <nav class="hidden md:block">
+    <ul
+      id="destop-nav"
+      class="flex gap-6 justify-end items-center font-normal"
+    ></ul>
   </nav>
-  <button class="toggle__main__nav">
-    <i class="fas fa-bars"></i>
-    <i class="fas fa-times"></i>
+
+  <nav class="md:hidden">
+    <ul
+      id="mobile-nav"
+      class="absolute w-64 right-0 top-14 z-50 p-5 bg-[#999999]/95 hidden flex-col list-none gap-3"
+    ></ul>
+  </nav>
+
+  <button class="md:hidden text-2xl">
+    <i class="fas fa-bars" onclick="setMobileNavState(true)"></i>
+    <i class="fas fa-times hidden" onclick="setMobileNavState(false)"></i>
   </button>
 </header>
-
-<script>
-  const mainNav = document.getElementById('main-nav');
-  const pathNames = window.location.pathname.split('/');
-  const links = [
-    {
-      text: 'Hem',
-      link: '',
-    },
-    {
-      text: 'Album',
-      link: 'albums',
-    },
-    {
-      text: 'Om',
-      link: '#om',
-    },
-    {
-      text: 'Kontakt',
-      link: '#kontakt',
-    },
-  ];
-
-  links.forEach((linkObj) => {
-    const { text, link } = linkObj;
-    const linkLi = document.createElement('li');
-    const linkA = document.createElement('a');
-    linkA.classList.add('main__nav__list__item');
-
-    if (pathNames.slice(1).includes(link)) {
-      linkA.classList.add('active');
-    }
-
-    linkA.href = `/${link}`;
-    linkA.appendChild(document.createTextNode(text));
-    linkLi.appendChild(linkA);
-    mainNav.appendChild(linkLi);
-  });
-</script>
