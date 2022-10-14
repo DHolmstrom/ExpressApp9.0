@@ -1,4 +1,4 @@
-const albumsGrid = document.querySelector('.albums__grid');
+const imageGrid = document.getElementById('image-grid');
 const albumTitle = document.getElementById('album-title');
 const albumSubTitle = document.getElementById('album-sub-title');
 const popupImage = document.getElementById('popup-image');
@@ -7,6 +7,7 @@ const popupimageDownload = document.getElementById('popup-image-download');
 const popupAlbumLink = document.getElementById('popup-album-link');
 const popupTags = document.getElementById('popup-tags');
 const popupFilename = document.getElementById('popup-filename');
+const popupPhotographer = document.getElementById('popup-album-photographer');
 const popupFilenameTextArea = document.getElementById(
   'popup-filename-text-area'
 );
@@ -39,21 +40,18 @@ popupContainer.addEventListener('click', function (e) {
 function createImageItem(image) {
   const { _id, tags = [], filename } = image;
   var albumCoverImg = document.createElement('img');
+  albumCoverImg.classList.add('max-h-full', 'max-w-full');
+
   albumCoverImg.src = `/images/lowres/${filename}`;
   albumCoverImg.alt = `${tags.join(', ')}`;
   albumCoverImg.defer = true;
 
-  var albumCoverA = document.createElement('div');
-  albumCoverA.onclick = updatePopupImage(_id);
-  albumCoverA.classList.add('album');
-
-  albumCoverA.addEventListener('click', function () {
+  albumCoverImg.addEventListener('click', function () {
     updatePopupImage(_id);
     setPopupview(true);
   });
 
-  albumCoverA.appendChild(albumCoverImg);
-  albumsGrid.appendChild(albumCoverA);
+  imageGrid.appendChild(albumCoverImg);
 }
 
 function updatePopupImage(imageId) {
@@ -72,6 +70,7 @@ function updatePopupImage(imageId) {
   popupTags.innerText = tagsString;
   popupFilename.innerText = filename;
   popupFilenameTextArea.innerText = filename;
+  popupPhotographer.innerText = albumInfo.photographer.name;
 }
 
 function setPopupview(status) {

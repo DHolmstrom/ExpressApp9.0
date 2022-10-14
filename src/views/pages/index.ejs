@@ -1,137 +1,173 @@
-<section class="hero">
-  <div class="hero__text">
-    <h3 class="hero__text__title">Dennis Holmström</h3>
-    <h5 class="hero__text__subtitle">Fotograf | Programerare | Entreprenör</h5>
+<section
+  class="h-[calc(100vh-56px)] relative [background-image:url('../images/heroImage.jpg')] bg-center bg-no-repeat bg-cover flex justify-center items-center"
+>
+  <div
+    class="max-w-full absolute top-[calc(1/5*100%)] md:top-[calc(1/7*100%)] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#999999]/70 shadow flex flex-col py-4 px-8 gap-4"
+  >
+    <h2 class="text-2xl font-bold">Dennis Holmström</h2>
+    <h3 class="text-lg font-semibold truncate">
+      Fotograf | Programerare | Entreprenör
+    </h3>
   </div>
 
-  <div class="hero__info">
-    <a class="hero__info__links" href="#om">
-      <h6 class="hero__info__links__title">Om mig</h6>
-      <p class="hero__info__links__info">
+  <div
+    class="absolute bottom-[calc(-100/12*1%)] left-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:grid grid-cols-3 gap-8 h-fit max-w-7xl"
+  >
+    <a class="bg-[#999999]/70 py-2 px-4" href="#om">
+      <h4 class="font-semibold text-lg">Om mig</h4>
+      <p class="font-medium text-sm w-fit">
         Lär dig mer om mig och vad jag finner intresse i
       </p>
     </a>
-    <a class="hero__info__links" href="#">
-      <h6 class="hero__info__links__title">Fotografering</h6>
-      <p class="hero__info__links__info">Titta på mina senaste bilder</p>
+    <a class="bg-[#999999]/70 py-2 px-4" href="/albums">
+      <h4 class="font-semibold text-lg">Fotografering</h4>
+      <p class="font-medium text-sm w-fit">Titta på mina senaste bilder</p>
     </a>
-    <a class="hero__info__links" href="#kontakt">
-      <h6 class="hero__info__links__title">Kontakt</h6>
-      <p class="hero__info__links__info">
+    <a class="bg-[#999999]/70 py-2 px-4" href="#kontakt">
+      <h4 class="font-semibold text-lg">Kontakt</h4>
+      <p class="font-medium text-sm w-fit">
         Här kan du kontakta mig om du har frågor eller är intresserad av att
         jobba med mig
       </p>
     </a>
   </div>
 </section>
-<section class="about" id="om">
-  <h3 class="about__title section__title">Om mig</h3>
-  <p class="about__info">
-    Jag heter Dennis Holmström, är en 18 år och bor i Göteborg.
-    <br />
-    <br />
-    Under de senaste åren har jag fotograferat från och till beroende på säsong.
-    På vinterhalvåret fotograferar jag mycket hockey eftersom detta är något som
-    jag har växt upp med. På sommaren blir det istället mycket fordon och
-    landskap.
-    <br />
-    <br />
-    För tillfället studerar jag Teknik med inriktningen automation på
-    Göteborgsregionens Tekniska Gymnasium (GTG) vilket gör att jag har en ökad
-    förståelse för hur teknik fungerar och används av dig.
-  </p>
-  <img
-    src="/images/kameraporträtt.jpg"
-    alt="En portätt bild på mig [Dennis Holmström]"
-    class="about__img"
-  />
+<section class="" id="om">
+  <div
+    class="py-20 px-4 md:px-10 max-w-7xl grid place-items-center gap-8 grid-cols-1 lg:grid-cols-2"
+  >
+    <h2 class="text-3xl font-bold lg:col-span-2">Om mig</h2>
+    <div>
+      <p class="font-medium max-w-sm text-sm">
+        Jag heter Dennis Holmström, är en 18 år och bor i Göteborg.
+        <br />
+        Under de senaste åren har jag fotograferat från och till beroende på
+        säsong. På vinterhalvåret fotograferar jag mycket hockey eftersom detta
+        är något som jag har växt upp med. På sommaren blir det istället mycket
+        fordon och landskap.
+        <br />
+        För tillfället studerar jag Teknik med inriktningen automation på
+        Göteborgsregionens Tekniska Gymnasium (GTG) vilket gör att jag har en
+        ökad förståelse för hur teknik fungerar och används av dig.
+      </p>
+    </div>
+
+    <div class="flex justify-center items-center">
+      <img
+        src="/images/kameraporträtt.jpg"
+        alt="En portätt bild på mig [Dennis Holmström]"
+        class="max-w-sm w-2/3 h-2/3"
+      />
+    </div>
+  </div>
 </section>
-<section class="about__page">
-  <h3 class="about__page__title section__title">Om hemsidan</h3>
-  <p class="about__page__info">
-    Denna hemsidan är byggd både för att visa min kunskap inom programmering av
-    hemsidor och för att ha en samlingsplats för de bilder jag tagit.
-    <br />
-    <br />
-    På hemsidan finner du exempelvis några av mina favoritbilder, samlingar av
-    bilder från speciella evenemang.
-    <br />
-    <br />
-    Här kan du se hur jag använder mig av olika programspråk för att göra det
-    till en så smidig hemsida som möjligt.
-  </p>
-  <div class="about__page__grid">
-    <h4 class="about__page__grid__title">Använda programspråk</h4>
-    <article class="about__page__griditem">
-      <h6 class="about__page__griditem__title">HTML</h6>
-      <p class="about__page__griditem__info">
+<section class="flex gap-8 flex-col py-20 px-4 md:px-10">
+  <h2 class="text-3xl font-bold text-center">Om hemsidan</h2>
+  <div class="flex justify-center items-center">
+    <p class="font-medium max-w-sm text-sm">
+      Denna hemsidan är byggd både för att visa min kunskap inom programmering
+      av hemsidor och för att ha en samlingsplats för de bilder jag tagit.
+      <br />
+      På hemsidan finner du exempelvis några av mina favoritbilder, samlingar av
+      bilder från speciella evenemang.
+      <br />
+      Här kan du se hur jag använder mig av olika programspråk för att göra det
+      till en så smidig hemsida som möjligt.
+    </p>
+  </div>
+
+  <div class="px-16 grid grid-cols-1 max-w-5xl gap-8 md:grid-cols-3 mx-auto">
+    <h3 class="md:col-span-3 text-2xl font-semibold text-center">
+      Använda programspråk
+    </h3>
+    <article class="py-4 px-4 bg-[#999999]/70 shadow-lg rounded-lg">
+      <h4 class="font-medium text-lg mb-2">HTML</h4>
+      <p class="text-sm font-thin">
         Används för att bestämma innehållet på hemsidan
       </p>
     </article>
-    <article class="about__page__griditem">
-      <h6 class="about__page__griditem__title">JavaScript</h6>
-      <p class="about__page__griditem__info">
+    <article class="py-4 px-4 bg-[#999999]/70 shadow-lg rounded-lg">
+      <h4 class="font-medium text-lg mb-2">JavaScript</h4>
+      <p class="text-sm font-thin">
         Styr vad som händer när du interagerar med hemsidan.
       </p>
     </article>
-    <article class="about__page__griditem">
-      <h6 class="about__page__griditem__title">SCSS</h6>
-      <p class="about__page__griditem__info">
+    <article class="py-4 px-4 bg-[#999999]/70 shadow-lg rounded-lg">
+      <h4 class="font-medium text-lg mb-2">Tailwind CSS</h4>
+      <p class="text-sm font-thin">
         Används för att styra utseendet på hemsidan.
       </p>
     </article>
   </div>
 </section>
-<section class="kontakt" id="kontakt">
-  <form action="" class="kontakt__form" autocomplete="off">
-    <h3 class="section__title">Kontakt</h3>
-    <div class="kontakt__form__group form__group">
+<section class="py-20" id="kontakt">
+  <form
+    action=""
+    class="flex flex-col gap-3 md:gap-6 px-4 py-8 max-w-lg mx-auto md:bg-[#999999]/75 md:shadow-xl"
+    autocomplete="off"
+  >
+    <h3 class="text-2xl font-semibold text-center">Kontakt</h3>
+    <div class="flex flex-col gap-2">
+      <label
+        class="text-sm underline underline-offset-2 decoration-red-800 decoration-2"
+        for="namn"
+        >Namn</label
+      >
       <input
-        class="kontakt__form__input form__input"
+        class="h-14 px-4 border-2 border-red-800 focus:border-red-800 focus:ring-red-800"
         type="text"
         name="namn"
-        placeholder=""
+        placeholder="Fyll i ditt namn..."
         required="True"
       />
-      <label class="form__label" for="namn">Namn</label>
     </div>
-    <div class="kontakt__form__group form__group">
+    <div class="flex flex-col gap-2">
+      <label
+        class="text-sm underline underline-offset-2 decoration-red-800 decoration-2"
+        for="email"
+        >Email</label
+      >
       <input
-        class="kontakt__form__input form__input"
+        class="h-14 px-4 border-2 border-red-800 focus:border-red-800 focus:ring-red-800"
         type="text"
         name="email"
-        placeholder=""
+        placeholder="Fyll i din epost..."
         required="True"
       />
-      <label class="form__label" for="email">Email</label>
     </div>
-    <div class="kontakt__form__group form__group">
+    <div class="flex flex-col gap-2">
+      <label
+        class="text-sm underline underline-offset-2 decoration-red-800 decoration-2"
+        for="amne"
+        >Ämne</label
+      >
       <input
-        class="kontakt__form__input form__input"
+        class="h-14 px-4 border-2 border-red-800 focus:border-red-800 focus:ring-red-800"
         type="text"
         name="amne"
-        placeholder=""
+        placeholder="Fyll i ditt ämne..."
         required="True"
       />
-      <label class="form__label" for="amne">Ämne</label>
     </div>
-    <div class="kontakt__form__group form__group">
+    <div class="flex flex-col gap-2">
+      <label
+        class="text-sm underline underline-offset-2 decoration-red-800 decoration-2"
+        for="meddelande"
+        >Meddelande</label
+      >
       <textarea
-        class="kontakt__form__input form__input no__resize"
+        class="w-full min-h-[2.75rem] h-28 px-4 border-2 border-red-800 focus:border-red-800 focus:ring-red-800"
         name="meddelande"
-        cols="30"
-        rows="10"
-        placeholder=""
+        placeholder="Skriv ditt meddelande"
         required="True"
       ></textarea>
-      <label class="form__label" for="meddelande">Meddelande</label>
     </div>
-    <div class="kontakt__form__group form__group">
+    <div class="">
       <input
         onclick="SendEmail()"
-        class="form__input"
-        type="button"
-        value="Skicka"
+        class="h-14 w-full bg-white text-center px-4 border-2 border-red-800 focus:border-red-800 focus:ring-red-800"
+        type="submit"
+        value="Skicka meddelande"
       />
     </div>
   </form>
